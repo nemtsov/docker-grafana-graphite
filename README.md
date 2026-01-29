@@ -1,8 +1,8 @@
 # StatsD + Graphite + Grafana 8
 
-[![dokku/docker-grafana-graphite](http://dockeri.co/image/dokku/docker-grafana-graphite)](https://registry.hub.docker.com/u/dokku/docker-grafana-graphite/)
+[![nemtsov/docker-grafana-graphite](http://dockeri.co/image/nemtsov/docker-grafana-graphite)](https://hub.docker.com/r/nemtsov/docker-grafana-graphite)
 
-This image contains a sensible default configuration of StatsD, Graphite and Grafana. This image is used as a base for [dokku](https://github.com/progrium/dokku) graphite-statsd plugin.
+This image contains a sensible default configuration of StatsD, Graphite and Grafana.
 
 There are two ways for using this image:
 
@@ -45,7 +45,7 @@ ports to whatever you want by changing left side number in the `--publish` param
 
 ## Building the image yourself
 
-The Dockerfile and supporting configuration files are available in our [Github repository](https://github.com/jlachowski/docker-grafana-graphite).
+The Dockerfile and supporting configuration files are available in our [Github repository](https://github.com/nemtsov/docker-grafana-graphite).
 This comes specially handy if you want to change any of the StatsD, Graphite or Grafana settings, or simply if you want
 to know how tha image was built. The repo also has `build` and `start` scripts to make your workflow more pleasant.
 
