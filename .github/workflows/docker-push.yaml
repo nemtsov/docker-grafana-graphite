@@ -30,14 +30,14 @@ jobs:
           image_tag=latest
           push_enabled=false
           is_tagged=false
-          if [[ '${{ github.event.workflow_run.head_branch }}' =~ ^[0-9]+\.[0-9]+\.[0-9]+ ]]; then
+          if [[ '${{ github.event.workflow_run.head_branch }}' =~ ^v?[0-9]+\.[0-9]+\.[0-9]+ ]]; then
             echo -e "\u001b[32mDetected semver tag\u001b[0m"
             image_tag='${{ github.event.workflow_run.head_branch }}'
             push_enabled=true
           elif [[ '${{ github.event.workflow_run.head_branch }}' == "main" ]]; then
             echo -e "\u001b[32mDetected main branch\u001b[0m"
             push_enabled=false
-          elif [[ '${{github.ref_name}}' =~ ^[0-9]+\.[0-9]+\.[0-9]+ ]]; then
+          elif [[ '${{github.ref_name}}' =~ ^v?[0-9]+\.[0-9]+\.[0-9]+ ]]; then
             echo -e "\u001b[32mDetected semver tag\u001b[0m"
             image_tag='${{ github.ref_name }}'
             push_enabled=true
@@ -96,11 +96,13 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: ${{ needs.push-enabled.outputs.is-tagged == 'true' }}
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
           tags: nemtsov/docker-grafana-graphite:${{ needs.push-enabled.outputs.docker-image-tag }}
           labels: |
             ${{ steps.docker_meta.outputs.labels }}
             org.opencontainers.image.version=${{ github.event.workflow_run.head_branch }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
