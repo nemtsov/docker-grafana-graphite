@@ -1,4 +1,4 @@
-# StatsD + Graphite + Grafana 8
+# StatsD + Graphite + Grafana 11
 
 [![nemtsov/docker-grafana-graphite](http://dockeri.co/image/nemtsov/docker-grafana-graphite)](https://hub.docker.com/r/nemtsov/docker-grafana-graphite)
 
